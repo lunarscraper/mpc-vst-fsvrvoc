@@ -1,0 +1,309 @@
+{
+  "_comment": "Not a real Schwung module -- chain_params lists the VST parameters of fsvr_vst.cpp so mpc-vst-plugins' tools/gen_vst.py can generate params.h + the skin. The keys must match fsvr_vst.cpp. Centred macros are offsets on the performance's own value, as the FS1R's part parameters are. Start values the plugin sets itself (fsvr_vst.cpp start_values()).",
+  "chain_params": [
+    {
+      "key": "perf",
+      "name": "Performance",
+      "min": 0,
+      "max": 383
+    },
+    {
+      "key": "perf_load",
+      "name": "Load",
+      "access": "write"
+    },
+    {
+      "key": "rand_cat",
+      "name": "Category",
+      "options": [
+        "ALL",
+        "PIANO",
+        "CHROMATIC",
+        "ORGAN",
+        "GUITAR",
+        "BASS",
+        "STRINGS",
+        "ENSEMBLE",
+        "BRASS",
+        "REED",
+        "PIPE",
+        "SYN LEAD",
+        "SYN PAD",
+        "SYN FX",
+        "ETHNIC",
+        "PERCUSSIVE",
+        "SOUND FX",
+        "DRUMS",
+        "SYN COMP",
+        "VOCAL",
+        "COMBINATION",
+        "MAT WAVE",
+        "SEQUENCE"
+      ]
+    },
+    {
+      "key": "rand_go",
+      "name": "Random",
+      "access": "write"
+    },
+    {
+      "key": "panic",
+      "name": "Panic",
+      "access": "write"
+    },
+    {
+      "key": "vowel",
+      "name": "Vowel",
+      "options": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U",
+        "AE",
+        "ER",
+        "UH"
+      ]
+    },
+    {
+      "key": "vtype",
+      "name": "Voice",
+      "options": [
+        "MALE",
+        "FEMALE",
+        "CHILD",
+        "GIANT"
+      ]
+    },
+    {
+      "key": "shape",
+      "name": "Shape",
+      "options": [
+        "STAB",
+        "PLUCK",
+        "LEAD",
+        "PAD"
+      ]
+    },
+    {
+      "key": "breath",
+      "name": "Breath",
+      "min": 0,
+      "max": 99
+    },
+    {
+      "key": "body",
+      "name": "Body",
+      "min": 0,
+      "max": 99
+    },
+    {
+      "key": "make",
+      "name": "Make",
+      "access": "write"
+    },
+    {
+      "key": "rand_vowel",
+      "name": "Rnd Vowel",
+      "access": "write"
+    },
+    {
+      "key": "fseq",
+      "name": "Fseq",
+      "min": 0,
+      "max": 90
+    },
+    {
+      "key": "fseq_rand",
+      "name": "Rnd Fseq",
+      "access": "write"
+    },
+    {
+      "key": "fseq_speed",
+      "name": "Fseq Speed",
+      "min": 10,
+      "max": 500
+    },
+    {
+      "key": "mut_amt",
+      "name": "Amount",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "key": "mutate",
+      "name": "Mutate",
+      "access": "write"
+    },
+    {
+      "key": "undo",
+      "name": "Undo",
+      "access": "write"
+    },
+    {
+      "key": "save",
+      "name": "Save",
+      "access": "write"
+    },
+    {
+      "key": "user",
+      "name": "User",
+      "min": 1,
+      "max": 199
+    },
+    {
+      "key": "user_load",
+      "name": "User Load",
+      "access": "write"
+    },
+    {
+      "key": "formant",
+      "name": "Formant",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "fm",
+      "name": "FM",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "cutoff",
+      "name": "Cutoff",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "reso",
+      "name": "Resonance",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "attack",
+      "name": "Attack",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "decay",
+      "name": "Decay",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "release",
+      "name": "Release",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "lfo_speed",
+      "name": "LFO Speed",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "lfo_pitch",
+      "name": "Vibrato",
+      "min": -64,
+      "max": 63
+    },
+    {
+      "key": "rev_send",
+      "name": "Reverb",
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "var_send",
+      "name": "Variation",
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "volume",
+      "name": "Volume",
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "mono",
+      "name": "Mono",
+      "options": [
+        "POLY",
+        "MONO"
+      ]
+    },
+    {
+      "key": "glide",
+      "name": "Glide",
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "voc_on",
+      "name": "Vocoder",
+      "options": [
+        "OFF",
+        "ON"
+      ]
+    },
+    {
+      "key": "voc_file",
+      "name": "Vox File",
+      "min": 1,
+      "max": 99
+    },
+    {
+      "key": "voc_mode",
+      "name": "Vox Mode",
+      "options": [
+        "NOTE",
+        "LOOP",
+        "BAR"
+      ]
+    },
+    {
+      "key": "voc_start",
+      "name": "Vox Start",
+      "min": 0,
+      "max": 99
+    },
+    {
+      "key": "voc_speed",
+      "name": "Vox Speed",
+      "min": 25,
+      "max": 400
+    },
+    {
+      "key": "voc_bands",
+      "name": "Bands",
+      "options": [
+        "8",
+        "12",
+        "16",
+        "20"
+      ]
+    },
+    {
+      "key": "voc_shift",
+      "name": "Band Shift",
+      "min": -12,
+      "max": 12
+    },
+    {
+      "key": "voc_mix",
+      "name": "Voc Mix",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "key": "voc_hf",
+      "name": "Sibilance",
+      "min": 0,
+      "max": 100
+    }
+  ]
+}

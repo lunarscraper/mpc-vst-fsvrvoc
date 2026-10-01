@@ -1,0 +1,10 @@
+{
+  "name": "FSVR",
+  "vendor": "lunarscraper",
+  "uid": "FsVr",
+  "version": 3000,
+  "so": "fsvr.so",
+  "module": "module.json",
+  "layout": "layout.conf",
+  "_comment": "Instrument (FS1R reconstruction). vst.json/module.json only feed mpc-vst-plugins' tools/gen_vst.py for params.h + the skin. The plugin is fsvr_vst.cpp, built by this port's own build.sh: FSVR's engine (../src, unmodified) and its factory banks (../data, embedded by banks.S) are compiled in-process; no JUCE, no GUI, no ALSA."
+}

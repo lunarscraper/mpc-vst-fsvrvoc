@@ -1,0 +1,1409 @@
+index,name,category
+0,Ballad EP,1
+1,Clavmann,1
+2,Clavmann 2,1
+3,Digi Clav,1
+4,DX7Classic,1
+5,Mtrial Pno,1
+6,MtrialPno2,1
+7,MtrialPno3,1
+8,Real Rose,1
+9,Rose Att,1
+10,Rose Sft1,1
+11,Rose Sft2,1
+12,Suit Rose,1
+13,Velvt Rose,1
+14,4 Op Clav,1
+15,Da Comp,2
+16,Synth Bell,2
+17,Tabla,2
+18,B3JazzComp,3
+19,B3Perc3rd,3
+20,DrawOrgn,3
+21,DrawOrgn2,3
+22,DrawOrgn3,3
+23,Fs-Organ,3
+24,Full Drawb,3
+25,Ham Organ,3
+26,OR-Right,3
+27,Organ Fseq,3
+28,The Lounge,3
+29,Jazz Gtr,4
+30,Stratmann,4
+31,Acid King,5
+32,Ana Bass,5
+33,AttackBass,5
+34,B-Rave,5
+35,Bassline 1,5
+36,Bassline 2,5
+37,BlegBass,5
+38,DidgBass,5
+39,Dry Syn,5
+40,FM Bass,5
+41,FundaBass,5
+42,HyperFuzz,5
+43,JungleBass,5
+44,LoFiAcid,5
+45,Matze,5
+46,Moon Bass,5
+47,Phone Bass,5
+48,PlastBass,5
+49,PunchBass,5
+50,Syn Bass,5
+51,Technical,5
+52,FairyStrgs,6
+53,JMichel,6
+54,OB String,6
+55,ResoStrgs,6
+56,Saws,6
+57,SloDu Saws,6
+58,SS String,6
+59,SS String2,6
+60,HitMatrial,7
+61,ANSweep,8
+62,FS Brass,8
+63,Hook,8
+64,ObiehornL,8
+65,ObiehornR,8
+66,Quackz,8
+67,Stab,8
+68,Swell,8
+69,Kuchibue,10
+70,Dual Saws2,11
+71,DualSquare,11
+72,Earth Lead,11
+73,Fetish,11
+74,Glass Harp,11
+75,Glider,11
+76,Lead Saw,11
+77,Mitosis,11
+78,Retronic,11
+79,Score Pad,11
+80,Tech Lead,11
+81,Trance Csm,11
+82,Voc Lead,11
+83,Add Pad,12
+84,Beauty,12
+85,Brassetra,12
+86,CineSweep,12
+87,Fat Pad,12
+88,FormantPad,12
+89,FormSweep1,12
+90,FormSweep2,12
+91,FormSweep3,12
+92,FormSweep4,12
+93,FS Moby II,12
+94,Heimdal,12
+95,LFO Pad,12
+96,Moving,12
+97,Nebulous,12
+98,OBx Pad,12
+99,OBx Pad2,12
+100,Octavian,12
+101,Paddy,12
+102,Qwerty,12
+103,Saws&Hold,12
+104,Saws2,12
+105,SleepyPad,12
+106,Spacy Pad,12
+107,Starship,12
+108,SuperPad,12
+109,SweepersVx,12
+110,Tech Lead2,12
+111,The Seeker,12
+112,The Shadow,12
+113,Thermal,12
+114,VocPhaseA,12
+115,Win Pad,12
+116,Wind,12
+117,Caravan,13
+118,DippeDut,13
+119,Furry Bell,13
+120,Glacial,13
+121,Miracle,13
+122,MizuGuitar,13
+123,Morph,13
+124,Nightmare,13
+125,RythmLoop,13
+126,Sho,13
+127,Spiral,13
+128,BagPipe,14
+129,BagPipe-dl,14
+130,Gamelan,14
+131,Gamelan2,14
+132,Mukkuri,14
+133,SuikinStr,14
+134,Thai Boxin,14
+135,ThumKalimb,14
+136,Big-Gamlan,15
+137,Eth-Drum1,15
+138,Eth-Drum2,15
+139,Beep VoX,16
+140,Dark,16
+141,ForceField,16
+142,Ghost,16
+143,Ghost2,16
+144,Magic,16
+145,Night,16
+146,Open Fseq,16
+147,RadioNoise,16
+148,Reso SE,16
+149,Saucer,16
+150,Scaling SE,16
+151,Slow Atk,16
+152,SpaceBomb,16
+153,WalkinRobo,16
+154,Warp1,16
+155,Warp2,16
+156,09 OpenHat,17
+157,09ClHatBel,17
+158,Beat BD,17
+159,Beat Cym,17
+160,Beat SD,17
+161,Beat Zap,17
+162,Boom,17
+163,Choos,17
+164,ClosedHat1,17
+165,ClosedHat2,17
+166,DanceKick,17
+167,FS-Kick1,17
+168,FS-Kick2,17
+169,FS-Kick3,17
+170,Hatty,17
+171,Hihat,17
+172,Nu Kick 1,17
+173,Nu Kick 2,17
+174,Nu Kick 3,17
+175,Nu Snare 1,17
+176,Nu Snare 2,17
+177,Nu Snare 3,17
+178,Open Hat 1,17
+179,Open Hat 2,17
+180,PowerKick,17
+181,Snare,17
+182,Tchak,17
+183,Tech BD,17
+184,Tech HH,17
+185,Tech Rim,17
+186,Tech SD,17
+187,TR Kick,17
+188,TR Snare,17
+189,DigiSQ1R,18
+190,DigiSQ3,18
+191,DogBytes,18
+192,Fast&Cheap,18
+193,Fmt-Pluck,18
+194,FunKey,18
+195,Funky Tech,18
+196,Fusion,18
+197,Metallic,18
+198,NoiseDecay,18
+199,Raymond,18
+200,SawSaw,18
+201,Snow Decay,18
+202,Snow Pixy,18
+203,Spellbound,18
+204,Syncorgano,18
+205,Thin Mini,18
+206,VeloSweep,18
+207,Vox Tron,18
+208,Zansyo,18
+209,Zapper,18
+210,Celebratn,19
+211,Eh Human,19
+212,FairyVoice,19
+213,FormSweep,19
+214,FS-Choir,19
+215,FS-Sweep,19
+216,Homy,19
+217,Human,19
+218,Ih Human,19
+219,Man_Eh,19
+220,NoisyVce,19
+221,Oh Human,19
+222,Shaman Woo,19
+223,Spacy Aaah,19
+224,Spacy FX,19
+225,SpacySweep,19
+226,SweepyVce,19
+227,VocoSweep,19
+228,VocPhaseB,19
+229,AN Arp 1,22
+230,AN Arp 2,22
+231,Compu Saw,22
+232,DigiSQ1,22
+233,DigiSQ2,22
+234,Drw-EuroDr,22
+235,Hard Pulse,22
+236,Harry,22
+237,New Key,22
+238,Power Key,22
+239,RythmLoop2,22
+240,Saw Pad,22
+241,TekBass,22
+242,FseqBase01,0
+243,FseqBase02,0
+244,FseqBase03,0
+245,FseqBase04,0
+246,FseqBase05,0
+247,FseqBase06,0
+248,FseqBase07,0
+249,FseqBase08,0
+250,FseqBase09,0
+251,FseqBase10,0
+252,FseqBase11,0
+253,FseqBase12,0
+254,FseqBase13,0
+255,FseqBase14,0
+256,FortePno 1,-1
+257,FortePno 2,-1
+258,MM-Piano 1,-1
+259,MM-Piano 2,-1
+260,Pianotone1,-1
+261,Pianotone2,-1
+262,Pianotone3,-1
+263,5thPiano 1,-1
+264,5thPiano 2,-1
+265,PrprdPiano,-1
+266,Claviano,-1
+267,BrightPno1,-1
+268,BrightPno2,-1
+269,BrightPno3,-1
+270,Dark Piano,-1
+271,Digi Piano,-1
+272,PianoDrops,-1
+273,PowerPiano,-1
+274,CP70 1,-1
+275,CP70 2,-1
+276,CP70 3,-1
+277,El.Grand 1,-1
+278,El.Grand 2,-1
+279,El.Grand 3,-1
+280,El.Grand 4,-1
+281,MM-ElGnd 1,-1
+282,MM-ElGnd 2,-1
+283,E.Piano 1,-1
+284,E.Piano 2,-1
+285,E.Piano 3,-1
+286,E.Piano 4,-1
+287,E.Piano 5,-1
+288,E.Piano 6,-1
+289,E.Piano 7,-1
+290,E.Piano 8,-1
+291,E.Piano 9,-1
+292,E.Piano 10,-1
+293,E.Piano 11,-1
+294,E.Piano 12,-1
+295,E.Piano 13,-1
+296,E.Piano 14,-1
+297,E.Piano 15,-1
+298,E.Piano 16,-1
+299,E.Piano 17,-1
+300,Aclectic,-1
+301,DX-Road 1,-1
+302,DX-Road 2,-1
+303,DX-Road 3,-1
+304,DX-Road 4,-1
+305,DX-Road 5,-1
+306,BrightEP 1,-1
+307,BrightEP 2,-1
+308,EP 1967,-1
+309,EP 1970,-1
+310,EP 1980,-1
+311,EP 1985,-1
+312,Soft EP 1,-1
+313,Soft EP 2,-1
+314,Soft EP 3,-1
+315,Hard EP 1,-1
+316,Hard EP 2,-1
+317,Hard EP 3,-1
+318,Hard EP 4,-1
+319,Clicky EP,-1
+320,Digitine,-1
+321,Woody EP,-1
+322,Metaltine,-1
+323,Tinesquawk,-1
+324,FullTine 1,-1
+325,FullTine 2,-1
+326,Wurli EP,-1
+327,Wurli Road,-1
+328,Dark Wurli,-1
+329,Big Wurlt,-1
+330,Andrian,-1
+331,Blustig,-1
+332,Woodmetal,-1
+333,CastePiano,-1
+334,Chorus EP,-1
+335,BigJazzyEP,-1
+336,ClearElPno,-1
+337,NiteclubEP,-1
+338,CosaRosa,-1
+339,DX-Ragtime,-1
+340,Digi Poly,-1
+341,Duke EP,-1
+342,DynoRoad,-1
+343,Clavarpsi,-1
+344,Wack EP,-1
+345,HollowKeys,-1
+346,HonkyTonk1,-1
+347,HonkyTonk2,-1
+348,PotlidKeyz,-1
+349,Knock EP,-1
+350,Knock Wack,-1
+351,Mark III,-1
+352,XtremeTine,-1
+353,Mod ElPno,-1
+354,3D Road,-1
+355,PinchedEP,-1
+356,No Tines,-1
+357,Old Jazz,-1
+358,Politti,-1
+359,Pop Piano,-1
+360,Prc ElPno,-1
+361,Prds Piano,-1
+362,Ratio Dob,-1
+363,ThinnerEP,-1
+364,Rezzo EP,-1
+365,RubbaRoad,-1
+366,SawBellEP,-1
+367,QuikPlayEP,-1
+368,Loud Piano,-1
+369,Urban,-1
+370,Vics EP,-1
+371,DX Classic,-1
+372,ToyPiano 1,-1
+373,ToyPiano 2,-1
+374,ToyPiano 3,-1
+375,ToyPiano 4,-1
+376,Plasticky,-1
+377,Harpsi 1,-1
+378,Harpsi 2,-1
+379,Harpsi 3,-1
+380,Harpsi 4,-1
+381,Harpsi 5,-1
+382,Harpsi 6,-1
+383,Harpsi 7,-1
+384,Harpsi 8,-1
+385,Harpsi 9,-1
+386,HarpsiWire,-1
+387,AD 1600s 1,-1
+388,AD 1600s 2,-1
+389,AD 1900s,-1
+390,Caffeine,-1
+391,RazorWire,-1
+392,Cembalim,-1
+393,Cembalo,-1
+394,ElecHarpsi,-1
+395,Syn Harpsi,-1
+396,DX-Clavi 1,-1
+397,DX-Clavi 2,-1
+398,DX-Clavi 3,-1
+399,DX-Clavi 4,-1
+400,DX-Clavi 5,-1
+401,DX-Clavi 6,-1
+402,DX-Clavi 7,-1
+403,MM-Clavi 1,-1
+404,MM-Clavi 2,-1
+405,MM-Clavi 3,-1
+406,BrightClv1,-1
+407,BrightClv2,-1
+408,BasoClavi,-1
+409,ChorusClav,-1
+410,Clavecin,-1
+411,Clavi Comp,-1
+412,ClaviExcel,-1
+413,ClaviPluck,-1
+414,ClaviStaff,-1
+415,Mute Clavi,-1
+416,Revinett,-1
+417,SkeltonClv,-1
+418,Celesta 1,-1
+419,Celesta 2,-1
+420,Celesta 3,-1
+421,Celesta 4,-1
+422,MM-Celesta,-1
+423,Halloween,-1
+424,Glocken 1,-1
+425,Glocken 2,-1
+426,Glocken 3,-1
+427,Glocken 4,-1
+428,Glocken 5,-1
+429,Glocken 6,-1
+430,HamerGlock,-1
+431,Magiglokk,-1
+432,AnvilGlock,-1
+433,MetalGlock,-1
+434,Perc Glock,-1
+435,Glokenring,-1
+436,SynGlock 1,-1
+437,SynGlock 2,-1
+438,MusicBox 1,-1
+439,MusicBox 2,-1
+440,MusicBox 3,-1
+441,MusicBox 4,-1
+442,MusicBox 5,-1
+443,MusicBox 6,-1
+444,MusicBox 7,-1
+445,MusicBox 8,-1
+446,MusicBox 9,-1
+447,MusicBox10,-1
+448,DX-Vibe 1,-1
+449,DX-Vibe 2,-1
+450,DX-Vibe 3,-1
+451,DX-Vibe 4,-1
+452,MM-Vibe 1,-1
+453,MM-Vibe 2,-1
+454,LFO Vibe,-1
+455,Vocal Vibe,-1
+456,Vibetron,-1
+457,VibraPhone,-1
+458,DX-Marimb1,-1
+459,DX-Marimb2,-1
+460,DX-Marimb3,-1
+461,DX-Marimb4,-1
+462,DX-Marimb5,-1
+463,DX-Marimb6,-1
+464,DX-Marimb7,-1
+465,TineMallet,-1
+466,Thumbpick,-1
+467,EchoMalet1,-1
+468,EchoMalet2,-1
+469,EchoMalet3,-1
+470,Congorimba,-1
+471,Bamburimba,-1
+472,BrightMrmb,-1
+473,Guitarimba,-1
+474,MellowMrmb,-1
+475,Metal Mrmb,-1
+476,DX-Xylo 1,-1
+477,DX-Xylo 2,-1
+478,DX-Xylo 3,-1
+479,DX-Xylo 4,-1
+480,DX-Xylo 5,-1
+481,DX-Xylo 6,-1
+482,Dual Xylo,-1
+483,Xylo Log,-1
+484,Syn Xylo,-1
+485,Digi Xylo,-1
+486,DX-Bell 1,-1
+487,DX-Bell 2,-1
+488,DX-Bell 3,-1
+489,DX-Bell 4,-1
+490,DX-Bell 5,-1
+491,DX-Bell 6,-1
+492,DX-Bell 7,-1
+493,DX-Bell 8,-1
+494,DX-Bell 9,-1
+495,DX-Bell 10,-1
+496,DX-Bell 11,-1
+497,DX-Bell 12,-1
+498,SparklBell,-1
+499,Wire Bell,-1
+500,DualSparkl,-1
+501,BellGlassy,-1
+502,MM-Bell,-1
+503,Crystal 1,-1
+504,Crystal 2,-1
+505,SoftBell 1,-1
+506,SoftBell 2,-1
+507,Bell Pluck,-1
+508,Blow Bell,-1
+509,Carillon,-1
+510,BellKeyzis,-1
+511,Digi Log,-1
+512,DumBells,-1
+513,MellowBell,-1
+514,Mini Bell,-1
+515,Child Bell,-1
+516,PPP Thing,-1
+517,Stonemetal,-1
+518,Syn Chime,-1
+519,Air Bell,-1
+520,WrapRound,-1
+521,TempleBel1,-1
+522,TempleBel2,-1
+523,TempleBel3,-1
+524,TempleBel4,-1
+525,TempleBel5,-1
+526,DX-Dlcm 1,-1
+527,DX-Dlcm 2,-1
+528,DX-Dlcm 3,-1
+529,Frozentime,-1
+530,MetalDlcmr,-1
+531,Silk Road,-1
+532,Full Organ,-1
+533,DrawOrgan1,-1
+534,DrawOrgan2,-1
+535,DrawOrgan3,-1
+536,DrawOrgan4,-1
+537,DrawOrgan5,-1
+538,DrawOrgan6,-1
+539,DrawOrgan7,-1
+540,DrawOrgan8,-1
+541,DrawOrgan9,-1
+542,DrawOrgn10,-1
+543,DrawOrgn11,-1
+544,DrawOrgn12,-1
+545,DrawOrgn13,-1
+546,DrawOrgn14,-1
+547,DrawOrgn15,-1
+548,DrawOrgn16,-1
+549,Organsynth,-1
+550,ChorusOrgn,-1
+551,RotaryOrgn,-1
+552,CirkusOrgn,-1
+553,JazzDrwbr,-1
+554,Keyclick,-1
+555,VibraOrgan,-1
+556,Farf Out,-1
+557,Grinder,-1
+558,JazzOrgan1,-1
+559,JazzOrgan2,-1
+560,PercOrgan1,-1
+561,PercOrgan2,-1
+562,PercOrgan3,-1
+563,PercOrgan4,-1
+564,PercOrgan5,-1
+565,PercOrgan6,-1
+566,PercOrgan7,-1
+567,PercOrgan8,-1
+568,PercOrgan9,-1
+569,PercOrgn10,-1
+570,PercOrgn11,-1
+571,PercOrgn12,-1
+572,PercOrgn13,-1
+573,PercOrgn14,-1
+574,PercOrgn15,-1
+575,PercOrgn16,-1
+576,PercOrgn17,-1
+577,XtraPerc,-1
+578,Road Organ,-1
+579,Fluteorgan,-1
+580,ClickNoise,-1
+581,Novalis,-1
+582,TouchOrgan,-1
+583,RockOrgan1,-1
+584,RockOrgan2,-1
+585,RockOrgan3,-1
+586,RockOrgan4,-1
+587,RockOrgan5,-1
+588,RockOrgan6,-1
+589,RockOrgan7,-1
+590,RockOrgan8,-1
+591,RockOrgan9,-1
+592,RockOrgn10,-1
+593,RockOrgn11,-1
+594,RockOrgn12,-1
+595,RockOrgn13,-1
+596,RockOrgn14,-1
+597,RockOrgn15,-1
+598,Vox Organ,-1
+599,SynOrgan 1,-1
+600,SynOrgan 2,-1
+601,PlasticOrg,-1
+602,PipeOrgan1,-1
+603,PipeOrgan2,-1
+604,PipeOrgan3,-1
+605,PipeOrgan4,-1
+606,PipeOrgan5,-1
+607,PipeOrgan6,-1
+608,PipeOrgan7,-1
+609,PipeOrgan8,-1
+610,TheatreOrg,-1
+611,SmallPipes,-1
+612,ChorusPipe,-1
+613,Wedding,-1
+614,DX-Chrch 1,-1
+615,DX-Chrch 2,-1
+616,BrightOrgn,-1
+617,TamePipe,-1
+618,PuffOrgan1,-1
+619,PuffOrgan2,-1
+620,Late Down,-1
+621,SoftReedOr,-1
+622,SteamOrgan,-1
+623,StreetOrgn,-1
+624,DX-Acrd 1,-1
+625,DX-Acrd 2,-1
+626,DX-Acrd 3,-1
+627,DX-Acrd 4,-1
+628,DX-Acrd 5,-1
+629,DX-Acrd 6,-1
+630,DX-TngAc,-1
+631,DX-Hmnc 1,-1
+632,DX-Hmnc 2,-1
+633,DX-Hmnc 3,-1
+634,DX-Hmnc 4,-1
+635,Chromonica,-1
+636,FM-Hmnc 1,-1
+637,FM-Hmnc 2,-1
+638,Bluesharp,-1
+639,Buzzharp,-1
+640,DX-AcstGt1,-1
+641,DX-AcstGt2,-1
+642,DX-AcstGt3,-1
+643,DX-AcstGt4,-1
+644,DX-AcstGt5,-1
+645,GuitarBell,-1
+646,LuteGuitar,-1
+647,DX-PickGt1,-1
+648,DX-PickGt2,-1
+649,DX-PickGt3,-1
+650,DX-PickGt4,-1
+651,DX-PickGt5,-1
+652,DX-PickGt6,-1
+653,DX-PickGt7,-1
+654,DX-PickGt8,-1
+655,Synhalon,-1
+656,Picksynth,-1
+657,Compitar,-1
+658,Stratish,-1
+659,Banjitar,-1
+660,Touch Mute,-1
+661,Firenze,-1
+662,Folknik,-1
+663,FunkyPluck,-1
+664,Guitar Box,-1
+665,Long Nail,-1
+666,Pianatar,-1
+667,RhythmPluk,-1
+668,SteelyPick,-1
+669,TiteGuitar,-1
+670,DX-JazzGt1,-1
+671,DX-JazzGt2,-1
+672,DX-JazzGt3,-1
+673,DX-JazzGt4,-1
+674,DX-JazzGt5,-1
+675,Guitorgan,-1
+676,DX-ClGt 1,-1
+677,DX-ClGt 2,-1
+678,DX-ClGt 3,-1
+679,DX-ClGt 4,-1
+680,DX-ClGt 5,-1
+681,DX-ClGt 6,-1
+682,DX-ClGt 7,-1
+683,DX-ClGt 8,-1
+684,DX-ClGt 9,-1
+685,DX-ClGt 10,-1
+686,DX-ClGt 11,-1
+687,DX-ClGt 12,-1
+688,Buzzstring,-1
+689,DX-MuteGt1,-1
+690,DX-MuteGt2,-1
+691,DX-MuteGt3,-1
+692,DX-MuteGt4,-1
+693,Heavy Gage,-1
+694,DX-OvDrGt,-1
+695,DX-DistGt1,-1
+696,DX-DistGt2,-1
+697,DX-DistGt3,-1
+698,DX-DistGt4,-1
+699,DX-DistGt5,-1
+700,Stortion1,-1
+701,Pluckoww,-1
+702,Stortion2,-1
+703,FuzzGuitar,-1
+704,DX-WoodBa1,-1
+705,DX-WoodBa2,-1
+706,DX-WoodBa3,-1
+707,DX-WoodBa4,-1
+708,DX-WoodBa5,-1
+709,DX-WoodBa6,-1
+710,DX-WoodBa7,-1
+711,DarkWodBa1,-1
+712,DarkWodBa2,-1
+713,BoogieBass,-1
+714,BassLegend,-1
+715,DX-FngrBa1,-1
+716,DX-FngrBa2,-1
+717,DX-FngrBa3,-1
+718,DX-FngrBa4,-1
+719,Fusit Bass,-1
+720,FingerPick,-1
+721,HardFinger,-1
+722,Harm Bass,-1
+723,Inorganic,-1
+724,Nasty Bass,-1
+725,SkweekBass,-1
+726,DX-PickBa1,-1
+727,DX-PickBa2,-1
+728,DX-PickBa3,-1
+729,DX-PickBa4,-1
+730,Bass Magic,-1
+731,Chiff Bass,-1
+732,Comped EB,-1
+733,Metal Bass,-1
+734,Owl Bass,-1
+735,Pick Pluck,-1
+736,Plektrumbs,-1
+737,Wired Bass,-1
+738,FretlesBa1,-1
+739,FretlesBa2,-1
+740,FretlesBa3,-1
+741,FretlesBa4,-1
+742,FretlesBa5,-1
+743,SlapString,-1
+744,Lite Slap,-1
+745,RoundWound,-1
+746,ImpactBass,-1
+747,Afresh,-1
+748,WireString,-1
+749,Clakwire,-1
+750,SuperBass1,-1
+751,SuperBass2,-1
+752,DigiBass 1,-1
+753,DigiBass 2,-1
+754,Digit Bass,-1
+755,Draft Bass,-1
+756,Brainacus,-1
+757,DX-SynBa 1,-1
+758,DX-SynBa 2,-1
+759,DX-SynBa 3,-1
+760,DX-SynBa 4,-1
+761,DX-SynBa 5,-1
+762,DX-SynBa 6,-1
+763,DX-SynBa 7,-1
+764,DX-SynBa 8,-1
+765,DX-SynBa 9,-1
+766,AnalogBass,-1
+767,Nharmonik,-1
+768,BassNovo,-1
+769,BassResWp,-1
+770,Cutmandu,-1
+771,DX-Bass 1,-1
+772,DX-Bass 2,-1
+773,DX-Bass 3,-1
+774,DX-Bass 4,-1
+775,DX-Bass 5,-1
+776,DX-Bass 6,-1
+777,WireBass 1,-1
+778,WireBass 2,-1
+779,HardDXBass,-1
+780,SmakaBass,-1
+781,AnaBass 1,-1
+782,AnaBass 2,-1
+783,AnaBass 3,-1
+784,81Z Bass,-1
+785,DiscBass 1,-1
+786,DiscBass 2,-1
+787,Hop Bass 1,-1
+788,Hop Bass 2,-1
+789,After 88,-1
+790,Cable Bass,-1
+791,Wood Rez,-1
+792,EazyAction,-1
+793,ExciteBass,-1
+794,PrkussBass,-1
+795,Flapstick,-1
+796,Jackson,-1
+797,NipponBass,-1
+798,Bass Knock,-1
+799,Ana Stevie,-1
+800,Munkhen,-1
+801,Perc Bass,-1
+802,Remark,-1
+803,SmoothBass,-1
+804,Ana Knock,-1
+805,Jaco Syn,-1
+806,Werksfunk,-1
+807,ZedRubba,-1
+808,DX-Violin1,-1
+809,DX-Violin2,-1
+810,DX-Violin3,-1
+811,DX-Violin4,-1
+812,Violinz,-1
+813,DX-Viola 1,-1
+814,DX-Viola 2,-1
+815,DX-Viola 3,-1
+816,DX-Cello 1,-1
+817,DX-Cello 2,-1
+818,DX-Cello 3,-1
+819,DX-Cello 4,-1
+820,Rosin,-1
+821,DX-Str 1,-1
+822,DX-Str 2,-1
+823,DX-Str 3,-1
+824,DX-Str 4,-1
+825,DX-Str 5,-1
+826,DX-Str 6,-1
+827,DX-Str 7,-1
+828,DX-Str 8,-1
+829,DX-Str 9,-1
+830,DX-Str 10,-1
+831,DX-Str 11,-1
+832,DX-Str 12,-1
+833,DX-Str 13,-1
+834,Quick Arco,-1
+835,MidString1,-1
+836,MidString2,-1
+837,LowString1,-1
+838,LowString2,-1
+839,MM-String,-1
+840,DX-AnaSt 1,-1
+841,DX-AnaSt 2,-1
+842,DX-AnaSt 3,-1
+843,DX-SynSt 1,-1
+844,DX-SynSt 2,-1
+845,DX-SynSt 3,-1
+846,DX-SynSt 4,-1
+847,DX-SynSt 5,-1
+848,DX-SynSt 6,-1
+849,DX-SynSt 7,-1
+850,WarmStr 1,-1
+851,WarmStr 2,-1
+852,WarmStr 3,-1
+853,WarmStr 4,-1
+854,Afternoon,-1
+855,Agitate,-1
+856,AnnaString,-1
+857,Bright Str,-1
+858,General,-1
+859,GentleMind,-1
+860,Gypsy,-1
+861,MaxiString,-1
+862,Michelle,-1
+863,MoterDrive,-1
+864,ReverbStrg,-1
+865,StrMachine,-1
+866,Silk Hall,-1
+867,Small Sect,-1
+868,Soft Bow,-1
+869,Soline,-1
+870,Violtron,-1
+871,DX-PizzSt,-1
+872,PizzString,-1
+873,DX-Harp 1,-1
+874,DX-Harp 2,-1
+875,DX-Harp 3,-1
+876,Baroquen,-1
+877,Dbl Harp 1,-1
+878,Dbl Harp 2,-1
+879,Apollon,-1
+880,CembaHarp,-1
+881,ElectrHarp,-1
+882,HarpStrum,-1
+883,Lute Harp,-1
+884,Metal Harp,-1
+885,Orch Harp,-1
+886,Syn Harp,-1
+887,DX-Timpani,-1
+888,Timpanic!,-1
+889,Iron Timpa,-1
+890,Ensemble,-1
+891,HallOrch 1,-1
+892,HallOrch 2,-1
+893,Orch Brass,-1
+894,DX-Trpt 1,-1
+895,DX-Trpt 2,-1
+896,DX-Trpt 3,-1
+897,DX-Trpt 4,-1
+898,DX-Trpt 5,-1
+899,DX-Trpt 6,-1
+900,SilverTrpt,-1
+901,Solo Trpt,-1
+902,SynTrumpet,-1
+903,Trumponica,-1
+904,DX-Trb 1,-1
+905,DX-Trb 2,-1
+906,DX-Trb 3,-1
+907,Mute Trb,-1
+908,DX-Tuba 1,-1
+909,DX-Tuba 2,-1
+910,DX-Tuba 3,-1
+911,DX-Horn,-1
+912,Hornz,-1
+913,Alps Horn,-1
+914,BlunchHorn,-1
+915,Horn Ens,-1
+916,MelowHorn1,-1
+917,MelowHorn2,-1
+918,SimpleHorn,-1
+919,Syn Horns,-1
+920,Vibra Horn,-1
+921,DX-Brass 1,-1
+922,DX-Brass 2,-1
+923,Attack Brs,-1
+924,Brasstring,-1
+925,DX-BrsSec1,-1
+926,DX-BrsSec2,-1
+927,MM-Brass 1,-1
+928,MM-Brass 2,-1
+929,MM-Brass 3,-1
+930,5th Brass,-1
+931,Blow Brass,-1
+932,Brass Sect,-1
+933,Chorus Brs,-1
+934,Fanfare,-1
+935,Hard Brass,-1
+936,Sample Brs,-1
+937,Single Brs,-1
+938,ThickBrass,-1
+939,TightBrs 1,-1
+940,TightBrs 2,-1
+941,DX-SynBr 1,-1
+942,DX-SynBr 2,-1
+943,DX-SynBr 3,-1
+944,DX-SynBr 4,-1
+945,DX-SynBr 5,-1
+946,DX-SynBr 6,-1
+947,DX-SynBr 7,-1
+948,FilterHorn,-1
+949,SharpBrass,-1
+950,Synthorns,-1
+951,CS80-Brs 1,-1
+952,CS80-Brs 2,-1
+953,Ana Poly,-1
+954,AnaFatBrs,-1
+955,AnalogBrs,-1
+956,Faze Brass,-1
+957,Brassy,-1
+958,Court,-1
+959,DX-FatBrs,-1
+960,RezAttack,-1
+961,FunkyRhytm,-1
+962,Chiffhorns,-1
+963,Juice,-1
+964,Kingdom,-1
+965,PowerDrive,-1
+966,Rahool Brs,-1
+967,SyntiBrs,-1
+968,UltraDrive,-1
+969,Warm Brass,-1
+970,SopranoSax,-1
+971,DX-ASax 1,-1
+972,DX-ASax 2,-1
+973,Alto Sax,-1
+974,DX-Tsax,-1
+975,TenorSax,-1
+976,Tenorsaxes,-1
+977,Oboe 1,-1
+978,Oboe 2,-1
+979,Oboe 3,-1
+980,Eng.Horn,-1
+981,Bassoon,-1
+982,DX-Clari 1,-1
+983,DX-Clari 2,-1
+984,Clari Solo,-1
+985,Slow Clari,-1
+986,VibratoCla,-1
+987,Piccolo 1,-1
+988,Piccolo 2,-1
+989,DX-Flute 1,-1
+990,DX-Flute 2,-1
+991,DX-Flute 3,-1
+992,DX-Flute 4,-1
+993,DX-Flute 5,-1
+994,DX-Flute 6,-1
+995,DX-Flute 7,-1
+996,Air Blower,-1
+997,MetalFlute,-1
+998,Song Flute,-1
+999,Recorder 1,-1
+1000,Recorder 2,-1
+1001,Recorder 3,-1
+1002,DX-PnFlute,-1
+1003,Harvest,-1
+1004,Fuhppps!,-1
+1005,DX-Bottle,-1
+1006,Quena,-1
+1007,Whistle 1,-1
+1008,Whistle 2,-1
+1009,Whistle 3,-1
+1010,Sukiyaki,-1
+1011,SambaWhstl,-1
+1012,Cosmowhist,-1
+1013,DX-Ocrn 1,-1
+1014,DX-Ocrn 2,-1
+1015,DX-Ocrn 3,-1
+1016,DX-Sitar 1,-1
+1017,DX-Sitar 2,-1
+1018,Ethre Four,-1
+1019,India,-1
+1020,Juice Harp,-1
+1021,Syntholin,-1
+1022,Pilgrim,-1
+1023,Tenjiku,-1
+1024,Ukabanjo,-1
+1025,Xango,-1
+1026,Xanu,-1
+1027,Zimbalon,-1
+1028,DX-Banjo,-1
+1029,Shamisen 1,-1
+1030,Shamisen 2,-1
+1031,Shamisen 3,-1
+1032,DX-Koto,-1
+1033,DX-Klmb 1,-1
+1034,DX-Klmb 2,-1
+1035,DX-Klmb 3,-1
+1036,DX-Klmb 4,-1
+1037,DX-Klmb 5,-1
+1038,DX-Bagpipe,-1
+1039,DX-Fiddle,-1
+1040,African,-1
+1041,Bali,-1
+1042,Tibetan,-1
+1043,Charango,-1
+1044,Gamelan 1,-1
+1045,Gamelan 2,-1
+1046,Gamelan 3,-1
+1047,Kinzoku 1,-1
+1048,Kinzoku 2,-1
+1049,ScotchTone,-1
+1050,DX-Agogo 1,-1
+1051,DX-Agogo 2,-1
+1052,DX-Bongo,-1
+1053,Bongo,-1
+1054,DX-Clave,-1
+1055,DX-Perc,-1
+1056,Block,-1
+1057,Conga Drum,-1
+1058,Cowbell,-1
+1059,Flexatone,-1
+1060,Glaeser,-1
+1061,Log Drum,-1
+1062,SmlShaker,-1
+1063,Metal,-1
+1064,Percud,-1
+1065,RefrsWhstl,-1
+1066,Seq Pluck,-1
+1067,BigShaker,-1
+1068,Side Stick,-1
+1069,Perkabell,-1
+1070,Spoon,-1
+1071,DX-StelCan,-1
+1072,Steel Can,-1
+1073,DX-StelDr1,-1
+1074,DX-StelDr2,-1
+1075,SteelDrum1,-1
+1076,SteelDrum2,-1
+1077,Steel Band,-1
+1078,Jamaica,-1
+1079,Tambarin,-1
+1080,Triangle 1,-1
+1081,Triangle 2,-1
+1082,BellGliss1,-1
+1083,BellGliss2,-1
+1084,Twincle,-1
+1085,MetalBottl,-1
+1086,NipponDrm1,-1
+1087,NipponDrm2,-1
+1088,Janpany,-1
+1089,Nou,-1
+1090,Sumoh Drum,-1
+1091,HandBell 1,-1
+1092,HandBell 2,-1
+1093,JingleBell,-1
+1094,Light Year,-1
+1095,SlightBell,-1
+1096,TracerBell,-1
+1097,MM-SynDr 1,-1
+1098,MM-SynDr 2,-1
+1099,Click Kick,-1
+1100,Hexagon,-1
+1101,Whapit,-1
+1102,Hi-Hat,-1
+1103,Deep Snare,-1
+1104,DX-MtlSnr,-1
+1105,Snapie,-1
+1106,Snare,-1
+1107,Soft Head,-1
+1108,StreetSD,-1
+1109,Tom Herz,-1
+1110,DX-RevCym1,-1
+1111,DX-RevCym2,-1
+1112,DX-Chorus1,-1
+1113,DX-Chorus2,-1
+1114,DX-Chorus3,-1
+1115,DX-Chorus4,-1
+1116,DX-Chorus5,-1
+1117,DX-Chorus6,-1
+1118,DX-Chorus7,-1
+1119,DX-Chorus8,-1
+1120,DX-Chorus9,-1
+1121,DX-Voice 1,-1
+1122,DX-Voice 2,-1
+1123,MM-Voice 1,-1
+1124,MM-Voice 2,-1
+1125,MM-Voice 3,-1
+1126,MM-Voice 4,-1
+1127,DbVoxFem,-1
+1128,Fem Voice,-1
+1129,Lady Vox,-1
+1130,Space Vox,-1
+1131,Syn Vox,-1
+1132,Bell+Pno 1,-1
+1133,Bell+Pno 2,-1
+1134,Bell+Vibe1,-1
+1135,Bell+Str,-1
+1136,Bell+Vibe2,-1
+1137,Cho+Marimb,-1
+1138,Clavi+Bass,-1
+1139,DX-Ba+Lead,-1
+1140,DX-HpSt,-1
+1141,EP+Brass 1,-1
+1142,EP+Brass 2,-1
+1143,EP+Chime,-1
+1144,EP+Clavi,-1
+1145,Elec Combi,-1
+1146,Glock+Brs,-1
+1147,Glock+Pno,-1
+1148,Harp+Flute,-1
+1149,Koto+Flute,-1
+1150,MalletHorn,-1
+1151,Mrmb+Gtr,-1
+1152,Orch Chime,-1
+1153,Pno+Flute,-1
+1154,StringTine,-1
+1155,Xylo+Brass,-1
+1156,DX-SynLd 1,-1
+1157,DX-SynLd 2,-1
+1158,DX-SynLd 3,-1
+1159,DX-SynLd 4,-1
+1160,DX-SynLd 5,-1
+1161,DX-SynLd 6,-1
+1162,DX-SynLd 7,-1
+1163,DX-SynLd 8,-1
+1164,DX-SynLd 9,-1
+1165,Pluck Lead,-1
+1166,Perka Lead,-1
+1167,GuitsynLd,-1
+1168,DXSynLd 1,-1
+1169,DXSynLd 2,-1
+1170,DXSynLd 3,-1
+1171,DXSynLd 4,-1
+1172,DXSynLd 5,-1
+1173,DXSynLd 6,-1
+1174,DXSynLd 7,-1
+1175,DXSynLd 8,-1
+1176,SqueezeLd,-1
+1177,Mooganic,-1
+1178,BrassLead1,-1
+1179,BrassLead2,-1
+1180,BrassLead3,-1
+1181,BrassLead4,-1
+1182,Saw Lead,-1
+1183,DX-SawLd 1,-1
+1184,DX-SawLd 2,-1
+1185,DX-Squar,-1
+1186,DX-VoiceLd,-1
+1187,DX-WahLead,-1
+1188,DXAttackLd,-1
+1189,CaliopLd 1,-1
+1190,CaliopLd 2,-1
+1191,CaliopLd 3,-1
+1192,Fifths 1,-1
+1193,Fifths 2,-1
+1194,LdSubHarm,-1
+1195,Buzzer,-1
+1196,Au Campo,-1
+1197,Bass Lead,-1
+1198,Comp Lead,-1
+1199,EadgbeLead,-1
+1200,Flap Synth,-1
+1201,FretlessLd,-1
+1202,Giovanni,-1
+1203,HarmoSynth,-1
+1204,Lead Line,-1
+1205,Lead Phone,-1
+1206,Lyle Lead,-1
+1207,PekingLead,-1
+1208,Puff Pipe,-1
+1209,Reed Lead,-1
+1210,SingleLine,-1
+1211,Super DX,-1
+1212,Sweep Lead,-1
+1213,Vibratoron,-1
+1214,DX-Vocoder,-1
+1215,Winwood,-1
+1216,DrkSweeper,-1
+1217,AnaBrsPad,-1
+1218,8bitStrPad,-1
+1219,DX-ChoPad1,-1
+1220,DX-ChoPad2,-1
+1221,Bow Pad 1,-1
+1222,Bow Pad 2,-1
+1223,Bow Pad 3,-1
+1224,Glassharp,-1
+1225,Wineglass,-1
+1226,Ice Galaxy,-1
+1227,Ice Heaven,-1
+1228,Hit Pad 1,-1
+1229,Hit Pad 2,-1
+1230,SynBrsPad1,-1
+1231,SynBrsPad2,-1
+1232,SynBrsPad3,-1
+1233,SynBrsPad4,-1
+1234,SynBrsPad5,-1
+1235,SynBrsPad6,-1
+1236,SynBrsPad7,-1
+1237,Vector Pad,-1
+1238,Pada Perka,-1
+1239,DX-MetalPd,-1
+1240,DX-SawPad,-1
+1241,Anna Pad,-1
+1242,Baroque,-1
+1243,BrassyWarm,-1
+1244,Bright Pad,-1
+1245,Clavi Pad,-1
+1246,Digi Pad,-1
+1247,Dispo Pad,-1
+1248,Ethereal,-1
+1249,Film Pad,-1
+1250,Fl.Cloud,-1
+1251,Floating,-1
+1252,Forest99,-1
+1253,Gior Pad,-1
+1254,GreenPeace,-1
+1255,Grunge Pad,-1
+1256,Hyper Sqr,-1
+1257,MM-Pretty,-1
+1258,MonsterPad,-1
+1259,Orwell,-1
+1260,PhaseSweep,-1
+1261,Phasers,-1
+1262,Glass Pad,-1
+1263,Sanctus,-1
+1264,StacHeaven,-1
+1265,Sweep Pad,-1
+1266,Water Log,-1
+1267,Spec-trail,-1
+1268,Whaser Pad,-1
+1269,Whisper,-1
+1270,WhistlePad,-1
+1271,DX-ScFi 1,-1
+1272,DX-ScFi 2,-1
+1273,DX-ScFi 3,-1
+1274,Image 1,-1
+1275,Image 2,-1
+1276,Laser 1,-1
+1277,Laser 2,-1
+1278,Laser 3,-1
+1279,Ri-zer,-1
+1280,MM-Shock 1,-1
+1281,MM-Shock 2,-1
+1282,Wallop 1,-1
+1283,Wallop 2,-1
+1284,Angel,-1
+1285,BackSuir,-1
+1286,Bird View,-1
+1287,ChorusElms,-1
+1288,DX-Stars,-1
+1289,Electric,-1
+1290,Evolution,-1
+1291,FM-Growth,-1
+1292,Paddawire,-1
+1293,Fantasynt,-1
+1294,Fluv Push,-1
+1295,Fmilters,-1
+1296,Glassy,-1
+1297,Glastine,-1
+1298,Glocker,-1
+1299,IceRevEcho,-1
+1300,InitEnsmbl,-1
+1301,MetalSweep,-1
+1302,SquareModd,-1
+1303,Mpndg Doom,-1
+1304,Mystrian,-1
+1305,RepertRise,-1
+1306,Space Trip,-1
+1307,Syn Rise,-1
+1308,Glider,-1
+1309,Anna DX,-1
+1310,Analog-X,-1
+1311,DX-Atms 1,-1
+1312,DX-Atms 2,-1
+1313,DX-Bright1,-1
+1314,DX-Bright2,-1
+1315,90 K,-1
+1316,200 K,-1
+1317,Arrow-X,-1
+1318,Attacker,-1
+1319,Harp Pad,-1
+1320,ChiLight,-1
+1321,Digi Calio,-1
+1322,Digitar,-1
+1323,Distracted,-1
+1324,FinerThing,-1
+1325,Fuji Stabs,-1
+1326,TouchyEdgy,-1
+1327,Metal Box,-1
+1328,MilkyWays,-1
+1329,New Elms,-1
+1330,Pipebells,-1
+1331,Synsitar,-1
+1332,OctiLate,-1
+1333,NoBoKuto,-1
+1334,Syn Bright,-1
+1335,Ting Voice,-1
+1336,Bottlead,-1
+1337,WhapSynth,-1
+1338,DX-Flght,-1
+1339,Take Off,-1
+1340,DX-Helicpt,-1
+1341,Helicopter,-1
+1342,DX-Ship,-1
+1343,DX-Train,-1
+1344,Mobile,-1
+1345,Motors,-1
+1346,MotorCycle,-1
+1347,U Boat,-1
+1348,Ambulance,-1
+1349,Whiz By,-1
+1350,Out-Da-Way,-1
+1351,Patrol Car,-1
+1352,Sirens,-1
+1353,DX-TelBusy,-1
+1354,DX-TelCall,-1
+1355,DX-TelTone,-1
+1356,DX-TlRing1,-1
+1357,DX-TlRing2,-1
+1358,Bugs&Birds,-1
+1359,DX-Insect1,-1
+1360,DX-Insect2,-1
+1361,DX-Piyo,-1
+1362,DX-Growl 1,-1
+1363,DX-Growl 2,-1
+1364,Animals,-1
+1365,DX-Wolf,-1
+1366,ManEater,-1
+1367,Alarm !,-1
+1368,Aura,-1
+1369,Chi-S&H,-1
+1370,Closing,-1
+1371,Computer,-1
+1372,Crasher,-1
+1373,DX-BigBen,-1
+1374,DX-Wave,-1
+1375,Descent,-1
+1376,Doppler,-1
+1377,Factory,-1
+1378,GhostLine,-1
+1379,Heart Beat,-1
+1380,Imaging,-1
+1381,IronEcho 1,-1
+1382,IronEcho 2,-1
+1383,MM-Fall,-1
+1384,MachineGun,-1
+1385,MobbyDick,-1
+1386,On the Run,-1
+1387,OuterLimit,-1
+1388,Perc Shot,-1
+1389,Repeater,-1
+1390,Jet Cars 1,-1
+1391,Scorchers,-1
+1392,Sci-Fi Too,-1
+1393,Jet Cars 2,-1
+1394,Speak-One,-1
+1395,Stopper,-1
+1396,Super Foot,-1
+1397,Talking DX,-1
+1398,Transport,-1
+1399,Turn Table,-1
+1400,UfoTakeOff,-1
+1401,Waterfall,-1
+1402,Whik Shot,-1
+1403,Bubblets,-1
+1404,Yes Talk,-1
+1405,Help me !,-1
+1406,Paranoir,-1
+1407,Screamy,-1

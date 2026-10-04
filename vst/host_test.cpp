@@ -16,6 +16,7 @@
 #include <vector>
 #include <dlfcn.h>
 #include <sys/stat.h>
+#include <thread>
 #include <unistd.h>
 
 struct AEffect;
@@ -256,6 +257,9 @@ int main(int argc, char **argv) {
     e->dispatcher(e, 10, 0, 0, nullptr, SR);
     e->dispatcher(e, 11, 0, BS, nullptr, 0);
     e->dispatcher(e, 12, 0, 1, nullptr, 0);
+    const int pBuf = param(e, "Buffer");
+    CHECK(pBuf >= 0, "no Buffer parameter");
+    e->setParameter(e, pBuf, 0.0f);   /* offline: render in this thread; section 14 tests the buffer */
 
     const int pPerf = param(e, "Performance"), pLoad = param(e, "Load"), pRand = param(e, "Random"),
               pCat = param(e, "Category"), pCut = param(e, "Cutoff"), pFm = param(e, "FM"),
@@ -637,7 +641,55 @@ int main(int argc, char **argv) {
         choose(e, pVFile, 2, 1, 99);
     }
 
-    /* 14. chunk into a second instance, vowel live, vocoder on */
+    /* 14. BUFFER: the worker thread renders ahead; paced in real time, the sound arrives L+32 later
+     * and complete (no dropouts) */
+    {
+        choose(e, pVoc, 0, 0, 1);
+        choose(e, pShape, 2, 0, 3);
+        press(e, pMake);
+        render(e, 2.0);
+        auto paced = [&](double sec, bool note) {
+            std::vector<float> l(BS), r(BS), all;
+            float *o[2] = {l.data(), r.data()};
+            if (note) midi(e, {{0x90, 57, 100}});
+            const int blocks = (int)(sec * SR / BS);
+            auto next = std::chrono::steady_clock::now();
+            for (int b = 0; b < blocks; b++) {
+                next += std::chrono::microseconds((long)(1e6 * BS / SR));
+                std::this_thread::sleep_until(next);
+                e->processReplacing(e, nullptr, o, BS);
+                g_samples += BS;
+                for (int i = 0; i < BS; i++) all.push_back(l[i]);
+            }
+            if (note) midi(e, {{0x80, 57, 0}});
+            return all;
+        };
+        auto onset = [](const std::vector<float> &a) { for (size_t i = 0; i < a.size(); i++) if (std::fabs(a[i]) > 1e-3f) return (long)i; return -1L; };
+        std::vector<float> d = capture(e, {{0x90, 57, 100}}, 0.6);   /* direct */
+        midi(e, {{0x80, 57, 0}});
+        render(e, 2.0);
+        e->setParameter(e, pBuf, 2.0f / 3.0f);                        /* 12 ms */
+        paced(0.3, false);                                            /* let the worker fill */
+        std::vector<float> b = paced(0.6, true);
+        paced(1.0, false);
+        long od = onset(d), ob = onset(b);
+        long holes = 0;                                               /* zero runs after the onset */
+        for (long i = ob + 1; ob >= 0 && i < (long)b.size() - 64; i++) {
+            bool z = true;
+            for (int k = 0; k < 32; k++) if (b[(size_t)(i + k)] != 0.0f) { z = false; break; }
+            if (z) { holes++; i += 32; }
+        }
+        std::printf("  buffer: onset direct %ld, buffered %ld samples (want +%d), dropouts %ld, rms %.4f\n",
+                    od, ob, 512 + 32, holes, rms(b, 0.1, 0.6));
+        /* 544 when the worker keeps up; less while it is still filling the ring (never more) */
+        CHECK(ob >= 0 && od >= 0 && ob - od >= 256 && ob - od <= 608, "BUFFER: latency %ld instead of up to 544", ob - od);
+        CHECK(holes == 0, "BUFFER: %ld dropouts while paced in real time", holes);
+        e->setParameter(e, pBuf, 0.0f);
+        render(e, 0.5);
+        choose(e, pVoc, 1, 0, 1);
+    }
+
+    /* 15. chunk into a second instance, vowel live, vocoder on */
     choose(e, pMono, 0, 0, 1);
     press(e, pRndV);
     void *chunk = nullptr;
@@ -653,8 +705,13 @@ int main(int argc, char **argv) {
     choose(e, pBreath, 50, 0, 99);   /* live tweak on both: same result */
     choose(e2, pBreath, 50, 0, 99);
     CHECK(state(e2) == state(e), "chunk: vowel spec not restored");
-    midi(e2, CHORD_ON);
-    CHECK(render(e2, 0.5, &bad) > 0.0005, "restored instance silent");
+    {   /* the restored instance sounds like the original */
+        midi(e, CHORD_ON); midi(e2, CHORD_ON);
+        const double r1 = render(e, 0.5, &bad), r2 = render(e2, 0.5, &bad);
+        midi(e, CHORD_OFF);
+        std::printf("  restored: rms %.5f, original %.5f\n", r2, r1);
+        CHECK(r2 > 0.3 * r1 && r1 > 0, "restored instance silent");
+    }
     std::printf("  chunk %ld bytes\n", (long)len);
     e2->dispatcher(e2, 1, 0, 0, nullptr, 0);
     CHECK(!bad, "NaN, Inf or denormals in the output");

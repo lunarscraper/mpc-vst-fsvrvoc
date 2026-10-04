@@ -44,19 +44,20 @@ void Synth::note_on(int part, int note, int vel) {
     //  3. within that part the walk starts after the part's own cursor and takes the first channel whose
     //     stored note is ABOVE the arriving one; failing that, the lowest stored note it saw.
     Chan* c = nullptr;
-    for (int k = 1; k <= NCHAN; k++) { Chan& x = ch[(nextChan + k) % NCHAN]; if (!x.active) { c = &x; break; } }
+    const int M = clampi(maxChan, 1, NCHAN);   // mpc-vst-fsvr: the channels in use, a CPU cap (Device::setMaxChannels)
+    for (int k = 1; k <= M; k++) { Chan& x = ch[(nextChan + k) % M]; if (!x.active) { c = &x; break; } }
     if (!c) {
         int best = part, excess = -1;
         for (int k = 0; k < 4; k++) {
             int p = (part + k) & 3, others = 0, n = 0;
             for (int q = 0; q < 4; q++) if (q != p) others += perf.part[q].p[0x00];
-            int res = clampi(perf.part[p].p[0x00], 0, std::max(0, NCHAN - others));
+            int res = clampi(perf.part[p].p[0x00], 0, std::max(0, M - others));
             for (auto& x : ch) if (x.active && x.part == p) n++;
             if (n > res && n - res > excess) { excess = n - res; best = p; }
         }
         int thr = note, fb = -1;
-        for (int k = 1; k <= NCHAN; k++) {
-            int i = (partChan[best] + k) % NCHAN;
+        for (int k = 1; k <= M; k++) {
+            int i = (partChan[best] + k) % M;
             if (!ch[i].active || ch[i].part != best) continue;
             if (thr < ch[i].note) { c = &ch[i]; break; }
             if (fb >= 0) { c = &ch[fb]; break; }

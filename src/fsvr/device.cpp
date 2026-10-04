@@ -34,6 +34,7 @@ Device::~Device() = default;
 void Device::setSampleRate(double hostRate) { if (hostRate > 1000) p->hostRate = hostRate; }
 double Device::sampleRate() const { return p->hostRate; }
 void Device::setGain(double g) { p->s.gain = g; }
+void Device::setMaxChannels(int n) { std::lock_guard<std::mutex> lk(p->s.mtx); p->s.maxChan = n; }   // mpc-vst-fsvr
 void Device::setEffects(bool on) { std::lock_guard<std::mutex> lk(p->s.mtx); p->s.fxBypass = !on; }   // mpc-vst-fsvr
 void Device::setEchoParameters(bool on) { p->echo = on; }
 void Device::forceChannel(int channel) { p->s.forceChannel = channel; }

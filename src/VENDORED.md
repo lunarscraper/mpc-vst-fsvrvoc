@@ -20,5 +20,8 @@ drop the change once FSVR has its own fix.
   crackled on the Force. It now renders 32 at a time: the same samples, an even load.
 - `fs1r.h`, `fsvr/device.cpp`, `fs1r/internal.h`, `fs1r/chips/ymp706.cpp`: `Device::setEffects(false)`
   skips the insertion, variation and reverb blocks (every part goes out dry, the master EQ stays).
+- `fs1r.h`, `fsvr/device.cpp`, `fs1r/internal.h`, `fs1r/firmware/notes.cpp`: `Device::setMaxChannels(n)`
+  makes the allocator use only the first n of the 32 channels; a note beyond takes one over the way
+  the unit does when all 32 are busy (damped). Release tails can no longer pile up.
 
 Re-vendor by copying the same files from a newer FSVR commit and re-applying the fix if needed.

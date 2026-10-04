@@ -30,6 +30,9 @@ public:
     void setGain(double g);
     // mpc-vst-fsvr: false skips the insertion, variation and reverb blocks (parts go out dry) to save CPU.
     void setEffects(bool on);
+    // mpc-vst-fsvr: at most n of the 32 channels are used; a note beyond takes one over (damped, as the
+    // unit does when all 32 are busy), so release tails cannot pile up. 32 = the unit.
+    void setMaxChannels(int n);
 
     // ---- MIDI. One channel message or one complete sysex message per call.
     void sendMidi(const uint8_t* bytes, size_t len);

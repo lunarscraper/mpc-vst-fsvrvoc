@@ -369,6 +369,7 @@ struct Chan {
 struct Synth {
     Perf perf; Chan ch[NCHAN]; uint32_t clock = 0; double gain = 1.0;   // the analogue volume pot, after the tap
     bool fxBypass = false;                       // mpc-vst-fsvr: effects off (Device::setEffects)
+    int maxChan = NCHAN;                         // mpc-vst-fsvr: channel cap (Device::setMaxChannels)
     // FUN_0000f7dc's cursors: the last channel allocated, and the last one each part took. Allocation
     // walks from these rather than from channel 0, which is what fixes the channel a note lands on.
     int nextChan = 0, partChan[4] = {0, 0, 0, 0};

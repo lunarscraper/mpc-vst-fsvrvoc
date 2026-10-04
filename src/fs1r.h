@@ -28,6 +28,8 @@ public:
     double sampleRate() const;
     void process(float* outL, float* outR, int numSamples);
     void setGain(double g);
+    // mpc-vst-fsvr: false skips the insertion, variation and reverb blocks (parts go out dry) to save CPU.
+    void setEffects(bool on);
 
     // ---- MIDI. One channel message or one complete sysex message per call.
     void sendMidi(const uint8_t* bytes, size_t len);

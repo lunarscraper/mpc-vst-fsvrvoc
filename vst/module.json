@@ -304,6 +304,42 @@
       "name": "Sibilance",
       "min": 0,
       "max": 100
+    },
+    {
+      "key": "output",
+      "name": "Output",
+      "min": -6,
+      "max": 24
+    },
+    {
+      "key": "voices",
+      "name": "Voices",
+      "options": [
+        "ALL",
+        "1",
+        "2",
+        "3",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "key": "parts",
+      "name": "Parts",
+      "options": [
+        "ALL",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "key": "fx",
+      "name": "Effects",
+      "options": [
+        "ON",
+        "OFF"
+      ]
     }
   ]
 }

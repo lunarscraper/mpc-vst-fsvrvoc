@@ -16,13 +16,15 @@ are embedded. No JUCE, no GUI: the screen is an MPC skin (`vst/layout.conf`).
 | MUTATE | AMOUNT + MUTATE moves formants, widths, levels and EG times of part 1's voice; UNDO (16 steps, covers every load and change); SAVE writes `fsvr_user/FSVR_nnn.syx` next to the plugin, USER + USER LOAD bring it back. The files are FS1R bulk dumps, FSVR desktop opens them too. |
 | SOUND | the FS1R's Formant and FM knobs (on the vowel voice: formants up/down, wider/narrower), filter cutoff/resonance, EG attack/decay/release. |
 | MOD/FX | LFO speed, vibrato, reverb and variation send, volume, MONO, GLIDE. |
+| SETUP | the CPU savers. OUTPUT (-6..+24 dB, default +12, soft knee above -3 dBFS). VOICES (ALL, 1-6; default 4): more held notes release the oldest. PARTS (ALL, 1-3): only the first parts of a performance play - layered factory performances cost a quarter. EFFECTS ON/OFF. The plugin also sleeps after 1.5 s of silence with no note held and costs nothing until the next note. |
 | VOCODER | 8-20 band vocoder with the FS1R as carrier. The modulator is a WAV from `fsvr_vox/` next to the plugin (`/sdcard/vst/fsvr_vox/` on the device; up to 99 files, sorted by name, 60 s each; 8/16/24/32-bit PCM or 32-bit float, mono or stereo, any sample rate). MODE: NOTE plays it once from each note, LOOP loops it from each note, BAR restarts it on every bar while the transport runs. START, SPEED 25-400 %, BAND SHIFT +-12 semitones, SIBILANCE (the WAV's highs straight through), MIX. Switching the vocoder ON reads the folder again. |
 
 All MIDI from the track reaches every part (the engine listens on one forced channel), and the
 engine's own MIDI implementation applies: CC 80 (Formant), CC 81 (FM), CC 74/71, CC 73/72,
 CC 91/93, CC 7, CC 5/65, sustain, bend, aftertouch, RPN, NRPN 01 xx.
 
-**CPU:** the plugin logs its DSP load every ~5 s to `/tmp/fsvr_vst.log` on the device
+**CPU** (x86 benchmark, 4-note chord): A025 Everybody 15.9 % as loaded, 4.4 % with PARTS 1, 2.1 % with
+PARTS 1 + EFFECTS OFF + VOICES 2; silent: 0 %. The plugin logs its DSP load every ~5 s to `/tmp/fsvr_vst.log` on the device
 (`ssh root@<device> cat /tmp/fsvr_vst.log`). `vst/test.sh` benchmarks every factory performance
 and the vowel voice on the CI machine (x86: vowel voice ~2 % of a core for one note, ~4 % for a
 4-note chord, the 20-band vocoder another ~0.5 %; the Force's Cortex-A17 is several times slower).

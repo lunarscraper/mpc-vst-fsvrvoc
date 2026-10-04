@@ -16,7 +16,7 @@ struct Device::Impl {
     // runs at 44.1; swap in a polyphase FIR if a spectrum measurement ever shows it matters.
     inline void pull() {
         if (engRead >= engFill) {
-            engFill = 256; engRead = 0;
+            engFill = 32; engRead = 0;   // mpc-vst-fsvr: 32, not 256 - an even load per host block
             s.render(eng[0], eng[1], engFill);
         }
         for (int c = 0; c < 2; c++) { h[c][0] = h[c][1]; h[c][1] = h[c][2]; h[c][2] = h[c][3]; h[c][3] = eng[c][engRead]; }
@@ -34,6 +34,7 @@ Device::~Device() = default;
 void Device::setSampleRate(double hostRate) { if (hostRate > 1000) p->hostRate = hostRate; }
 double Device::sampleRate() const { return p->hostRate; }
 void Device::setGain(double g) { p->s.gain = g; }
+void Device::setEffects(bool on) { std::lock_guard<std::mutex> lk(p->s.mtx); p->s.fxBypass = !on; }   // mpc-vst-fsvr
 void Device::setEchoParameters(bool on) { p->echo = on; }
 void Device::forceChannel(int channel) { p->s.forceChannel = channel; }
 

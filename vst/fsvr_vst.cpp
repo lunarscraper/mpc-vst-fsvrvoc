@@ -16,6 +16,9 @@
  *   VOCODER  16-20 band vocoder: the modulator a WAV from <plugin dir>/fsvr_vox (restarted per note,
  *            looped, or restarted every bar), the carrier the FS1R; band shift, mix, sibilance
  *   SOUND, MOD/FX  the part's offsets as CC/NRPN, mono and glide
+ *   SETUP    OUTPUT gain (with a soft knee), VOICES (held notes, oldest released first), PARTS
+ *            (play only the first 1-3 parts of a performance), EFFECTS off - the CPU savers; and
+ *            the plugin sleeps (renders nothing) after 1.5 s of silence with no note held
  *
  * Every instance owns its own fs1r::Device (the engine has no globals). All MIDI from the track
  * is moved to channel 1 and the device is forced to listen there, so every part plays.
@@ -509,11 +512,18 @@ struct Plugin {
     std::vector<std::string> vox_names;    /* index = VOX FILE - 1 */
     std::string vox_loaded;                /* the file voc.wave came from */
     double next_bar = -1;                  /* BAR mode: the next bar start, in quarter notes */
+    /* CPU savers */
+    bool sleeping = false;                 /* silent and no note: dev.process is skipped */
+    long quiet = 0;                        /* samples of silence so far */
+    std::vector<int> held;                 /* held notes, oldest first (VOICES) */
+    int banks[4] = {1, 0, 0, 0};           /* each part's voice bank as loaded (PARTS turns them off) */
+    std::atomic<float> out_gain{4.0f};
 };
 
 static int P_(const char *key) {           /* parameter index by key, looked up once */
     return param_index(key);
 }
+static int IDX_OUTPUT, IDX_VOICES, IDX_PARTS, IDX_FX;
 static int IDX_VOC_ON, IDX_VOC_FILE, IDX_VOC_MODE, IDX_VOC_START, IDX_VOC_SPEED, IDX_VOC_BANDS, IDX_VOC_SHIFT,
     IDX_VOC_MIX, IDX_VOC_HF;
 static int IDX_PERF, IDX_CAT, IDX_VOWEL, IDX_VTYPE, IDX_SHAPE, IDX_BREATH, IDX_BODY, IDX_FSEQ,
@@ -595,6 +605,11 @@ static void readback(Plugin *w) {
     w->update_display.store(true);
 }
 
+static void apply_parts(Plugin *w);
+static void capture_banks(Plugin *w);
+static void apply_mono(Plugin *w);
+static void apply_glide(Plugin *w);
+
 /* ---- undo --------------------------------------------------------------------------- */
 static void push_undo(Plugin *w) {
     std::vector<uint8_t> st;
@@ -614,6 +629,8 @@ static void do_undo(Plugin *w) {
     w->dev.allNotesOff();
     w->dev.setState(st.data(), st.size());
     w->vowel_active = false;
+    capture_banks(w);
+    apply_parts(w);
     readback(w);
     LOG("[fsvr_vst] undo\n");
 }
@@ -643,6 +660,8 @@ static void load_perf(Plugin *w, int index, bool undoable = true) {
     }
     w->perf.store(index);
     w->vowel_active = false;
+    for (int p = 0; p < 4; p++) w->banks[p] = d[192 + 52 * p + 1];
+    apply_parts(w);
     set_ui(w, IDX_PERF, index);
     readback(w);
     LOG("[fsvr_vst] performance %d \"%s\"\n", index, it.name.c_str());
@@ -727,6 +746,8 @@ static void apply_vowel(Plugin *w) {
     if (state_block(w, 0x10, 400, d) && d[192 + 1] == 0) send_param(w, 0x30, 0, 1, 1);   /* part 1 on */
     send_param(w, 0x30, 0, 0x0B, 120);                                                    /* part 1 volume */
     for (int p = 1; p < 4; p++) send_param(w, 0x30 + p, 0, 1, 0);                        /* 2-4 off */
+    w->banks[0] = d.empty() || d[192 + 1] == 0 ? 1 : d[192 + 1];
+    w->banks[1] = w->banks[2] = w->banks[3] = 0;
     if (ui(w, IDX_FSEQ) > 0) fseq_tracks(w);
 }
 static void make_vowel(Plugin *w, bool random) {
@@ -748,7 +769,17 @@ static void make_vowel(Plugin *w, bool random) {
     }
     if (random) set_ui(w, IDX_VOWEL, std::uniform_int_distribution<int>(0, 7)(w->rng));
     w->vowel_active = true;
+    /* part 1 neutral, whatever the performance had made of it: all 32 notes, the whole keyboard and
+     * velocity range, no shift or detune, its offsets centred (the sends and the insertion stay) */
+    static const uint8_t NEUTRAL[][2] = {{0x00, 32}, {0x08, 24}, {0x09, 64}, {0x0A, 64}, {0x0C, 64}, {0x0D, 64},
+        {0x0F, 0}, {0x10, 127}, {0x15, 64}, {0x16, 64}, {0x17, 64}, {0x18, 64}, {0x19, 64}, {0x1A, 64}, {0x1B, 64},
+        {0x1C, 64}, {0x1D, 64}, {0x1E, 64}, {0x1F, 64}, {0x20, 64}, {0x21, 64}, {0x22, 64}, {0x23, 64},
+        {0x2A, 1}, {0x2B, 127}, {0x2C, 0}};
+    for (auto &n : NEUTRAL) send_param(w, 0x30, 0, n[0], n[1]);
+    for (int p = 1; p < 4; p++) send_param(w, 0x30 + p, 0, 0, 0);   /* their note reserve to part 1 */
     apply_vowel(w);
+    apply_mono(w);
+    apply_glide(w);
     readback(w);
     LOG("[fsvr_vst] vowel %s (%s)\n", VOWEL_NAMES[ui(w, IDX_VOWEL)], random ? "random" : "made");
 }
@@ -852,6 +883,8 @@ static void load_user(Plugin *w) {
     w->dev.allNotesOff();
     if (!w->dev.setState(st.data(), st.size())) return;
     w->vowel_active = false;
+    capture_banks(w);
+    apply_parts(w);
     readback(w);
 }
 
@@ -893,6 +926,30 @@ static void voc_settings(Plugin *w) {
     v.hf.store(ui(w, IDX_VOC_HF));
 }
 
+/* ---- PARTS: only the first n parts play (bank byte 0 = part off) ---------------------- */
+static const int VOICE_LIMITS[6] = {0, 1, 2, 3, 4, 6};
+static void apply_parts(Plugin *w) {
+    const int lim = clampi(ui(w, IDX_PARTS), 0, 3);   /* 0 = all */
+    std::vector<uint8_t> d;
+    if (!state_block(w, 0x10, 400, d)) return;
+    for (int p = 0; p < 4; p++) {
+        const int want = (lim == 0 || p < lim) ? w->banks[p] : 0;
+        if (d[192 + 52 * p + 1] != want) send_param(w, 0x30 + p, 0, 1, want);
+    }
+    if (state_block(w, 0x10, 400, d)) LOG("[fsvr_vst] parts %d: banks %d %d %d %d (kept %d %d %d %d)\n", lim, d[193], d[193 + 52], d[193 + 104], d[193 + 156], w->banks[0], w->banks[1], w->banks[2], w->banks[3]);
+}
+/* The parts' banks after a load. A part PARTS keeps off reads 0: its last known bank stays. */
+static void capture_banks(Plugin *w) {
+    std::vector<uint8_t> d;
+    if (!state_block(w, 0x10, 400, d)) return;
+    const int lim = clampi(ui(w, IDX_PARTS), 0, 3);
+    for (int p = 0; p < 4; p++) {
+        const int b = d[192 + 52 * p + 1];
+        if (b || lim == 0 || p < lim) w->banks[p] = b;
+    }
+}
+static void apply_output(Plugin *w) { w->out_gain.store(std::pow(10.0f, ui(w, IDX_OUTPUT) / 20.0f)); }
+
 /* ---- mono and glide on all four parts ----------------------------------------------- */
 static void apply_mono(Plugin *w) {
     for (int p = 0; p < 4; p++) send_param(w, 0x30 + p, 0, 5, ui(w, IDX_MONO) ? 0 : 1);
@@ -930,6 +987,21 @@ static void handle_event(Plugin *w, const Ev &e) {
     if (t == 0xB0 && e.b[1] == 32) { w->pc_bank = e.b[2] > 2 ? 2 : e.b[2]; return; }
     if (t == 0xB0 && e.b[1] == 0) return;                /* bank MSB: ours, not the engine's */
     if (t == 0x90 && e.b[2] > 0 && w->voc.mode.load() != 2) w->voc.trigger();   /* NOTE/LOOP: restart */
+    if (t == 0x90 && e.b[2] > 0) {
+        w->sleeping = false; w->quiet = 0;
+        const int lim = VOICE_LIMITS[clampi(ui(w, IDX_VOICES), 0, 5)];
+        w->held.erase(std::remove(w->held.begin(), w->held.end(), (int)e.b[1]), w->held.end());
+        while (lim > 0 && (int)w->held.size() >= lim) {      /* VOICES: the oldest note goes */
+            const uint8_t off[3] = {0x80, (uint8_t)w->held.front(), 0};
+            w->dev.sendMidi(off, 3);
+            w->held.erase(w->held.begin());
+        }
+        w->held.push_back(e.b[1]);
+    } else if (t == 0x80 || t == 0x90) {
+        w->held.erase(std::remove(w->held.begin(), w->held.end(), (int)e.b[1]), w->held.end());
+    } else if (t == 0xB0 && (e.b[1] == 120 || e.b[1] == 123)) {
+        w->held.clear();
+    }
     const uint8_t m[3] = {t, e.b[1], e.b[2]};            /* everything onto channel 1 */
     w->dev.sendMidi(m, (t == 0xC0 || t == 0xD0) ? 2 : 3);
 }
@@ -966,6 +1038,11 @@ static void processReplacing(AEffect *e, float **in, float **out, int32_t n) {
         std::unique_lock<std::mutex> vl(w->vocMutex, std::defer_lock);
         const bool voc = w->voc.on.load() && vl.try_lock();     /* the UI swaps the WAV under this lock */
         auto render = [&](int32_t from, int32_t len) {
+            if (w->sleeping) {                                   /* asleep: costs nothing */
+                std::memset(out[0] + from, 0, sizeof(float) * (size_t)len);
+                std::memset(out[1] + from, 0, sizeof(float) * (size_t)len);
+                return;
+            }
             w->dev.process(out[0] + from, out[1] + from, len);
             if (voc) w->voc.process(out[0] + from, out[1] + from, len);
         };
@@ -976,6 +1053,27 @@ static void processReplacing(AEffect *e, float **in, float **out, int32_t n) {
             handle_event(w, q[k]);
         }
         if (pos < n) render(pos, n - pos);
+        /* sleep after 1.5 s below -80 dBFS with no note held */
+        if (!w->sleeping) {
+            float pk = 0;
+            for (int c = 0; c < 2; c++) for (int i = 0; i < n; i++) pk = std::max(pk, std::fabs(out[c][i]));
+            if (pk < 1e-4f && w->dev.activeNotes() == 0) {
+                w->quiet += n;
+                if (w->quiet > (long)(1.5f * w->sr)) { w->sleeping = true; LOG("[fsvr_vst] sleeping\n"); }
+            } else w->quiet = 0;
+        }
+        /* OUTPUT, then a soft knee above -3 dBFS */
+        const float g = w->out_gain.load();
+        for (int c = 0; c < 2; c++)
+            for (int i = 0; i < n; i++) {
+                float x = out[c][i] * g;
+                const float a = std::fabs(x);
+                if (a > 0.7f) {
+                    const float t = std::min((a - 0.7f) / 0.3f, 3.0f), t2 = t * t;
+                    x = std::copysign(0.7f + 0.3f * t * (27 + t2) / (27 + 9 * t2), x);
+                }
+                out[c][i] = x;
+            }
     }
     /* load meter: DSP time against the block's real time */
     const double used = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
@@ -1053,6 +1151,9 @@ static void setParameter(AEffect *e, int32_t i, float n) {
         else if (i == IDX_MONO) apply_mono(w);
         else if (i == IDX_GLIDE) apply_glide(w);
         else if (i == IDX_VOC_FILE) load_vox(w, now);
+        else if (i == IDX_OUTPUT) apply_output(w);
+        else if (i == IDX_PARTS) apply_parts(w);
+        else if (i == IDX_FX) w->dev.setEffects(now == 0);
         if (i == IDX_VOC_ON || i == IDX_VOC_MODE || i == IDX_VOC_START || i == IDX_VOC_SPEED || i == IDX_VOC_BANDS ||
             i == IDX_VOC_SHIFT || i == IDX_VOC_MIX || i == IDX_VOC_HF) {
             voc_settings(w);
@@ -1072,7 +1173,8 @@ static float getParameter(AEffect *e, int32_t i) {
 /* ---- project chunk: "FSVR" 2, settings as text, then the engine's whole state ---------- */
 static const char *const CHUNK_KEYS[] = {"perf", "rand_cat", "vowel", "vtype", "shape", "breath", "body",
                                          "fseq_speed", "mut_amt", "user", "voc_on", "voc_file", "voc_mode",
-                                         "voc_start", "voc_speed", "voc_bands", "voc_shift", "voc_mix", "voc_hf"};
+                                         "voc_start", "voc_speed", "voc_bands", "voc_shift", "voc_mix", "voc_hf",
+                                         "output", "voices", "parts", "fx"};
 static intptr_t get_chunk(Plugin *w, void **ptr) {
     std::string t;
     char buf[64];
@@ -1087,6 +1189,8 @@ static intptr_t get_chunk(Plugin *w, void **ptr) {
         std::snprintf(buf, sizeof buf, "va=%d;", w->vowel_active ? 1 : 0);
         t += buf;
         if (!w->vox_loaded.empty() && w->vox_loaded.find(';') == std::string::npos) t += "vf=" + w->vox_loaded + ";";
+        std::snprintf(buf, sizeof buf, "pb=%d,%d,%d,%d;", w->banks[0], w->banks[1], w->banks[2], w->banks[3]);
+        t += buf;
         for (int k = 0; k < 5; k++) {
             std::snprintf(buf, sizeof buf, "s%d=%d,%d,%d,%d;", k, w->spec.shift[k], w->spec.bwd[k], w->spec.lvd[k], w->spec.skirt[k]);
             t += buf;
@@ -1120,6 +1224,7 @@ static intptr_t set_chunk(Plugin *w, const void *data, intptr_t len) {
         std::string k = kv.substr(0, eq), v = kv.substr(eq + 1);
         if (k == "va") va = std::atoi(v.c_str()) != 0;
         else if (k == "vf") vox_name = v;
+        else if (k == "pb") std::sscanf(v.c_str(), "%d,%d,%d,%d", &w->banks[0], &w->banks[1], &w->banks[2], &w->banks[3]);
         else if (k.size() == 2 && k[0] == 's' && k[1] >= '0' && k[1] <= '4') {
             int j = k[1] - '0';
             std::sscanf(v.c_str(), "%d,%d,%d,%d", &sp.shift[j], &sp.bwd[j], &sp.lvd[j], &sp.skirt[j]);
@@ -1145,6 +1250,11 @@ static intptr_t set_chunk(Plugin *w, const void *data, intptr_t len) {
     } else {
         load_perf(w, w->perf.load(), false);   /* state unreadable: at least the performance */
     }
+    apply_output(w);
+    w->dev.setEffects(ui(w, IDX_FX) == 0);
+    apply_parts(w);
+    w->held.clear();
+    w->sleeping = false; w->quiet = 0;
     return 1;
 }
 
@@ -1171,6 +1281,8 @@ static void display(Plugin *w, int idx, char *out) {
             nm = nm.substr(0, nm.size() - 4);
             std::snprintf(buf, sizeof buf, "%02d %s", u, nm.c_str());
         } else std::snprintf(buf, sizeof buf, "%02d --", u);
+    } else if (idx == IDX_OUTPUT) {
+        std::snprintf(buf, sizeof buf, "%+d dB", u);
     } else if (idx == IDX_VOC_SHIFT) {
         std::snprintf(buf, sizeof buf, "%+d st", u);
     } else if (idx == IDX_FSEQ_SPEED || idx == IDX_MUT || idx == IDX_VOC_START || idx == IDX_VOC_SPEED ||
@@ -1254,6 +1366,8 @@ static void start_values(Plugin *w) {
     set_ui(w, IDX_VOC_BANDS, 2);   /* 16 */
     set_ui(w, IDX_VOC_MIX, 100);
     set_ui(w, IDX_VOC_HF, 30);
+    set_ui(w, IDX_OUTPUT, 12);
+    set_ui(w, IDX_VOICES, 4);   /* 4 notes: a chord, and a cap on the CPU */
 }
 
 extern "C" __attribute__((visibility("default"))) AEffect *VSTPluginMain(audioMasterCallback master) {
@@ -1270,6 +1384,7 @@ extern "C" __attribute__((visibility("default"))) AEffect *VSTPluginMain(audioMa
         IDX_VOC_ON = P_("voc_on"); IDX_VOC_FILE = P_("voc_file"); IDX_VOC_MODE = P_("voc_mode");
         IDX_VOC_START = P_("voc_start"); IDX_VOC_SPEED = P_("voc_speed"); IDX_VOC_BANDS = P_("voc_bands");
         IDX_VOC_SHIFT = P_("voc_shift"); IDX_VOC_MIX = P_("voc_mix"); IDX_VOC_HF = P_("voc_hf");
+        IDX_OUTPUT = P_("output"); IDX_VOICES = P_("voices"); IDX_PARTS = P_("parts"); IDX_FX = P_("fx");
     });
 
     Plugin *w = new Plugin();
@@ -1285,6 +1400,7 @@ extern "C" __attribute__((visibility("default"))) AEffect *VSTPluginMain(audioMa
     w->voc.sr = w->sr;
     load_vox(w, ui(w, IDX_VOC_FILE));
     voc_settings(w);
+    apply_output(w);
 
     AEffect *e = &w->fx;
     std::memset(e, 0, sizeof *e);

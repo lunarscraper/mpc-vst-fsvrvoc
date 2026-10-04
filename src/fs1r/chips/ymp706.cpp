@@ -307,7 +307,9 @@ void Synth::render(float* outL, float* outR, int frames) {
         auto sane = [](FxBlock& blk, double& a, double& b) {
             if (!(a > -1e6 && a < 1e6) || !(b > -1e6 && b < 1e6)) { blk.clearState(); a = b = 0.0; }
         };
-        double oL, oR;
+        double oL, oR, l, r;
+        if (fxBypass) { l = dL + iL; r = dR + iR; }    // mpc-vst-fsvr: effects off, every part dry
+        else {
         fx.ins.process(iL, iR, oL, oR);
         sane(fx.ins, oL, oR);
         dL += oL * insLvl; dR += oR * insLvl;
@@ -316,10 +318,11 @@ void Synth::render(float* outL, float* outR, int frames) {
         fx.var.process(vL, vR, oL, oR);
         sane(fx.var, oL, oR);
         rL += oL * varRev; rR += oR * varRev;
-        double l = dL + oL * varRet * vpl, r = dR + oR * varRet * vpr;
+        l = dL + oL * varRet * vpl; r = dR + oR * varRet * vpr;
         fx.rev.process(rL, rR, oL, oR);
         sane(fx.rev, oL, oR);
         l += oL * revRet * rpl; r += oR * revRet * rpr;
+        }
         if (!(l > -1e6 && l < 1e6) || !(r > -1e6 && r < 1e6)) {
             for (auto& q : fx.eq) q.reset();
             l = r = 0.0;

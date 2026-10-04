@@ -2,7 +2,7 @@
   "name": "FSVR",
   "vendor": "lunarscraper",
   "uid": "FsVr",
-  "version": 3000,
+  "version": 4000,
   "so": "fsvr.so",
   "module": "module.json",
   "layout": "layout.conf",

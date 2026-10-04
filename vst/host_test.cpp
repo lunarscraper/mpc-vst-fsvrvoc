@@ -554,7 +554,90 @@ int main(int argc, char **argv) {
         CHECK(rms(a, 0.05, 0.45) > 4 * rms(a, 0.6, 0.95), "24-bit stereo WAV not used");
     }
 
-    /* 13. chunk into a second instance, vowel live, vocoder on */
+    /* 13. SETUP / CPU: output gain, sleep, voice limit, part limit, effects off */
+    {
+        const int pOut = param(e, "Output"), pVoices = param(e, "Voices"), pParts = param(e, "Parts"), pFx = param(e, "Effects");
+        CHECK(pOut >= 0 && pVoices >= 0 && pParts >= 0 && pFx >= 0, "SETUP parameter names");
+        choose(e, pVoc, 0, 0, 1);
+        choose(e, pPerf, 5, 0, 383);     /* A006 Hollywood: four parts layered */
+        press(e, pLoad);
+        std::vector<uint8_t> loaded = state(e);
+        std::printf("  output default %s\n", display(e, pOut).c_str());
+        double lv[2];
+        for (int k = 0; k < 2; k++) {
+            choose(e, pOut, k ? 12 : 0, -6, 24);
+            std::vector<float> a = capture(e, {{0x90, 57, 100}}, 0.8);
+            midi(e, {{0x80, 57, 0}});
+            render(e, 0.3, &bad);
+            lv[k] = rms(a, 0.2, 0.8);
+        }
+        std::printf("  output 0 dB rms %.4f, +12 dB rms %.4f\n", lv[0], lv[1]);
+        CHECK(lv[1] > 3.0 * lv[0], "OUTPUT +12 dB is not louder");
+        /* sleep: silence costs (almost) nothing, a note wakes it at once */
+        render(e, 6.0, &bad);
+        auto t0 = std::chrono::steady_clock::now();
+        double sl = render(e, 3.0, &bad);
+        double asleep = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
+        midi(e, {{0x90, 57, 100}});
+        t0 = std::chrono::steady_clock::now();
+        double awake_rms = render(e, 1.0, &bad);
+        double awake = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
+        midi(e, {{0x80, 57, 0}});
+        render(e, 0.5, &bad);
+        std::printf("  sleep: 3 s asleep %.3f s cpu (rms %.6f), 1 s playing %.3f s cpu (rms %.4f)\n", asleep, sl, awake, awake_rms);
+        CHECK(sl == 0.0 && asleep < 0.3 * awake * 3, "the plugin does not sleep");
+        CHECK(awake_rms > 0.001, "a note does not wake it");
+        /* parts: 1 part costs less; ALL brings the performance back exactly */
+        double cost[2];
+        for (int k = 0; k < 2; k++) {
+            choose(e, pParts, k ? 1 : 0, 0, 3);
+            midi(e, {{0x90, 48, 100}, {0x90, 55, 100}, {0x90, 60, 100}, {0x90, 63, 100}});
+            t0 = std::chrono::steady_clock::now();
+            double r = render(e, 2.0, &bad);
+            cost[k] = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
+            midi(e, {{0x80, 48, 0}, {0x80, 55, 0}, {0x80, 60, 0}, {0x80, 63, 0}});
+            render(e, 0.5, &bad);
+            CHECK(r > 0.001, "silent with PARTS %d", k);
+        }
+        std::printf("  parts: ALL %.3f s, 1 %.3f s cpu for 2 s of a 4-note chord (%s)\n", cost[0], cost[1], display(e, pParts).c_str());
+        CHECK(cost[1] < 0.9 * cost[0], "PARTS 1 does not save CPU");
+        choose(e, pParts, 0, 0, 3);
+        choose(e, pOut, 12, -6, 24);
+        {   /* the state differs from the freshly loaded one only by OUTPUT, which is not engine state */
+            std::vector<uint8_t> now = state(e);
+            CHECK(now == loaded, "PARTS ALL does not restore the performance");
+        }
+        /* effects off: still sound, less CPU */
+        for (int k = 0; k < 2; k++) {
+            choose(e, pFx, k, 0, 1);
+            midi(e, {{0x90, 48, 100}, {0x90, 55, 100}});
+            t0 = std::chrono::steady_clock::now();
+            double r = render(e, 2.0, &bad);
+            cost[k] = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
+            midi(e, {{0x80, 48, 0}, {0x80, 55, 0}});
+            render(e, 0.5, &bad);
+            CHECK(r > 0.001, "silent with effects %s", k ? "off" : "on");
+        }
+        std::printf("  effects: on %.3f s, off %.3f s cpu\n", cost[0], cost[1]);
+        CHECK(cost[1] < cost[0], "EFFECTS OFF does not save CPU");
+        choose(e, pFx, 0, 0, 1);
+        /* voices 1: two held notes, only the second sounds */
+        choose(e, pVoices, 1, 0, 5);
+        choose(e, pShape, 2, 0, 3);
+        press(e, pMake);
+        std::vector<float> a = capture(e, {{0x90, 45, 100}, {0x90, 46, 100}}, 0.8);
+        midi(e, {{0x80, 45, 0}, {0x80, 46, 0}});
+        render(e, 0.5, &bad);
+        auto series = [&](double f0) { double s = 0; for (int k = 4; k <= 20; k++) s += harmonics(a, f0 * k, 2, 0.3, 0.8)[1]; return s; };
+        const double f1 = series(110.0), f2 = series(116.54);
+        std::printf("  voices 1: harmonics of A2 %.5f, of A#2 %.5f (rms %.4f)\n", f1, f2, rms(a));
+        CHECK(f2 > 3 * f1, "VOICES 1 kept the first note");
+        choose(e, pVoices, 0, 0, 5);
+        choose(e, pVoc, 1, 0, 1);
+        choose(e, pVFile, 2, 1, 99);
+    }
+
+    /* 14. chunk into a second instance, vowel live, vocoder on */
     choose(e, pMono, 0, 0, 1);
     press(e, pRndV);
     void *chunk = nullptr;

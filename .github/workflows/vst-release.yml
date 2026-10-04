@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version, e.g. 0.3.0
+        description: Version, e.g. 0.4.0
         required: true
-        default: 0.3.1
+        default: 0.4.0
       dry_run:
         description: Build only (zip + skin previews as run artifacts), no draft release
         type: boolean
@@ -28,3 +28,4 @@ jobs:
       license: GPL-3.0
       about: Yamaha FS1R reconstruction (FSVR engine) - vowel and formant generator, Fseq, mutate, WAV vocoder, 384 factory performances.
       dry_run: ${{ inputs.dry_run }}
+
